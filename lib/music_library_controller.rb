@@ -27,7 +27,8 @@ class MusicLibraryController
     gets
     puts "Please enter the name of an artist:"
     name = gets.strip
-    songs = Artist.find_by_name(name).songs.collect { |song| song.name }
+    a_ins = Artist.find_by_name(name)
+    songs = a_ins.songs.collect { |song| song.name } if a_ins
     songs = songs.uniq.sort
 
     i = 1
