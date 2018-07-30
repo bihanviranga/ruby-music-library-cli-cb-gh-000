@@ -24,8 +24,11 @@ class MusicLibraryController
   def list_songs
     songs = []
     Song.all.each do |song|
-      songs << song.name 
+      songs << song.name
     end
+
+    songs = songs.sort 
+    
   end
 
 end
