@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicLibraryController
   def initialize(path="./db/mp3s")
     mi = MusicImporter.new(path)
@@ -21,14 +23,67 @@ class MusicLibraryController
     end
   end
 
+  def list_songs_by_artist
+    gets
+    puts "Please enter the name of an artist:"
+    name = gets.strip
+    songs = Artist.find_by_name(name).songs.collect { |song| song.name }
+    songs = songs.uniq.sort
+
+    i = 1
+    songs.each do |song|
+      s_ins = Song.find_by_name(song)
+      puts "#{i}. #{song} - #{s_ins.genre.name}"
+      i += 1
+    end
+
+  end
+
+  def list_genres
+    genres = []
+    Genre.all.each do |genre|
+      genres << genre.name
+    end
+
+    genres = genres.uniq.sort
+    i =1
+
+    genres.each do |genre|
+      puts "#{i}. #{genre}"
+      i += 1
+    end
+
+  end
+
+  def list_artists
+    artists = []
+    Artist.all.each do |artist|
+      artists << artist.name
+    end
+
+    artists = artists.uniq.sort
+    i=1
+
+    artists.each do |artist|
+      a_ins = Artist.find_by_name(artist)
+      puts "#{i}. #{a_ins.name}"
+      i += 1
+    end
+  end
+
   def list_songs
     songs = []
     Song.all.each do |song|
       songs << song.name
     end
 
-    songs = songs.sort 
-    
+    songs = songs.uniq.sort
+    i = 1
+    songs.each do |song|
+      s_ins = Song.find_by_name(song)
+      puts "#{i}. #{s_ins.artist.name} - #{s_ins.name} - #{s_ins.genre.name}"
+      i += 1
+    end
   end
 
 end
