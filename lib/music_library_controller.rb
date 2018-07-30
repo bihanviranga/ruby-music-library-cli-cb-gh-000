@@ -30,7 +30,7 @@ class MusicLibraryController
     # a_ins = Artist.find_by_name(name)
     # songs = a_ins.songs.collect { |song| song.name } if a_ins
     # songs = songs.uniq.sort
-    # 
+    #
     # i = 1
     # songs.each do |song|
     #   s_ins = Song.find_by_name(song)
