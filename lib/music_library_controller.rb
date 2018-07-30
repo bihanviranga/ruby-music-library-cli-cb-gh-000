@@ -22,10 +22,9 @@ class MusicLibraryController
   end
 
   def list_songs
-    i = 1
+    songs = []
     Song.all.each do |song|
-      puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
-      i += 1
+      songs << song.name 
     end
   end
 
